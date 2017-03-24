@@ -1,0 +1,125 @@
+﻿@using IVRControlPanel.Models;
+@helper Render(Post post, System.Web.Mvc.HtmlHelper html, bool isAdmin, bool showComments)
+    {
+    <div class="box grid_12">
+        <div class="inner">
+            <header>
+                <div class="inner">
+                    <div class="left title">
+                        <h1>
+                            <a href="@Href("~/Posts/Details/" + post.ID)">@post.Title</a> @post.DateTime.ToString("MMM").ToUpper()
+                            @post.DateTime.ToString("dd")
+                        </h1>
+                        <a href="@Href("~/Posts/Details/" + post.ID + "#comments")">@post.Comments.Count</a>
+                    </div>
+                    <div class="right">
+                        <a class="close" href="#">close</a>
+                    </div>
+                </div>
+            </header>
+            <div class="post-content">
+                <div class="box-content">
+                    <div class="expander">
+                        <p> @html.Raw(post.Body)</p>
+                    </div>
+                    <br />
+                    <div class="tagList">
+                        @foreach (Tag tag in post.Tags)
+                        {
+                            <span class="tag"><a class="taglabel" href="@Href("~/Posts/Tags/" + tag.Name)">@tag.Name</a></span>   
+                        }
+                    </div>
+                    <br />
+                    @if (isAdmin)
+                    {
+                        <div class="postControlPanel">
+                            <a class="bt red" href="@Href("~/Posts/Delete/" + post.ID)">Delete </a>&nbsp; <a class="bt blue" Href="@Href("~/Posts/Edit/" + post.ID)">
+                                Edit 
+                            </a>
+                        </div>   
+                    }
+                </div>
+                <div class="linkList">
+                    @{ string url = "http://www.ivrcontrolpanel/posts/details/" + post.ID;}
+                </div>
+            </div>
+        </div>
+    </div>
+    if (showComments)
+    { 
+        <div class="simple-box grid_12">
+            <div class="inner">
+                <header>
+                    <h1>
+                        Comments
+                    </h1>
+                </header>
+                <div class="box-content">
+                    <div id="commentContainer">
+                        @foreach (Comment comment in post.Comments.OrderBy(x => x.DateTime))
+                        {
+                            <div class="comment">
+                                <div class="commentName">
+                                    @if (!string.IsNullOrWhiteSpace(comment.Email))
+                                    {
+                                        <a class="title" href="mailto:@comment.Email" >@comment.Name</a> 
+                                    }
+                                    else
+                                    {
+                                        <span class="title">@comment.Name </span>
+                                    }
+                                    <span class="commentTime">Said at @comment.DateTime.ToString("HH:mm") on @comment.DateTime.ToString("yyyy/MM/dd")
+                                    </span>:
+                                </div>
+                                <div class="commentBody">
+                                    @html.Encode(comment.Body).Replace("\n", "<br/>"))
+                                </div>
+                                <br />
+                                @if (isAdmin)
+                                {
+                                    <div class="commentControlPanel">
+                                        <a class = "bt red" href="@Href("~/Posts/DeleteComment/" + comment.ID)">Delete </a>
+                                    </div>   
+                                }
+                            </div>   
+                            <br />
+                        }
+       
+
+                        <div class="simple-box grid_8">
+                        <div class="inner">
+                                <header>
+                                    <div class="inner">
+                                        <div class="left title">
+                                            <h1>Leave a comment! (Login First)</h1>
+
+                                        </div>
+
+                                        
+                                    </div>
+                                </header>
+                            
+                                <div class="box-content">
+                                 <form action="@Href("~/Posts/Comment/" + post.ID)" method ="post">
+                                   <div class="field medium">
+                                        <label for="text-input-medium">Email (optional): </label>
+                                        <input type="text"  id="commentEmailPrompt"  name="email" />
+                                    </div>
+                                     <div class="field medium">
+                                        <label for="text-input-medium">Comments: </label>
+                                        <textarea id="commentBodyInput" name="body" rows="10" cols="60"></textarea>
+                                    </div>
+                                    
+                                     <input class="bt blue" type="submit" id="commentSubmitInput" name="submit" value="Submit!" />
+                                     
+                                     </form>
+                                </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+   
+}

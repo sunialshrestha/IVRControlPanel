@@ -1,0 +1,28 @@
+﻿@model IVRControlPanel.Models.Language
+
+@{
+    ViewBag.Title = "Language Details";
+}
+
+   <!-- Simple box -->
+                            <div class="simple-box grid_12">
+                                <div class="inner">
+                                    <header>
+                                        <h1>Language</h1>
+                                    </header>
+
+                                    <div class="box-content">
+                                        <p>
+                                        <div class="display-label">Language:  @Html.DisplayFor(model => model.Language1)</div>
+                                    
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <header class="grid_12 head">
+                             @Html.ActionLink("Edit", "Edit", new { id=Model.ID })
+                             </header>
+
+                            <header class="grid_12 head">
+                              @Html.ActionLink("Back to List", "Index")
+                              </header>

@@ -1,0 +1,47 @@
+﻿@model IVRControlPanel.Models.User
+
+@{
+    ViewBag.Title = "User Details";
+}
+<div class="box grid_12">
+    <header>
+        <div class="inner">
+            <div class="left title">
+                <h1>
+                    User Profile</h1>
+            </div>
+            <div class="right">
+                <a href="#" class="close">close</a>
+            </div>
+        </div>
+    </header>
+    <div class="box-content">
+        <div class="display-field">
+            <img src="@Url.Content("~/Content/img/profile/" + Model.FileName)" alt="profile picture" />
+        </div>
+        <header class="head">
+            @Html.ActionLink("Change Profile Picture", "UploadImage", "ProfileImage")
+        </header>
+        <div class="display-label">
+            Role: @Html.DisplayFor(model => model.Role.Name)</div>
+        <div class="display-label">
+            Name: @Html.DisplayFor(model => model.Name)</div>
+        <div class="display-label">
+            Username : @Html.DisplayFor(model => model.UserName)</div>
+        <div class="display-label">
+            Email : @Html.DisplayFor(model => model.Email)
+        </div>
+        <div class="display-label">
+            Contact Number: @Html.DisplayFor(model => model.ContactNumber)</div>
+        <div class="display-label">
+            Birth Date: @Html.DisplayFor(model => model.BirthDate)</div>
+        <div class="display-label">
+            Gender : @Html.DisplayFor(model => model.Gender)</div>
+    </div>
+</div>
+<header class="head">
+    @Html.ActionLink("Edit Profile", "Edit", new { id = Model.ID })
+</header>
+<header class="head">
+   <a href="@Url.Action("ChangePassword","Account")" > Change Password </a>
+</header>

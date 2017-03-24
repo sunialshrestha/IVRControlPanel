@@ -1,0 +1,24 @@
+﻿@using IVRControlPanel.Models;
+@model IEnumerable<Post>
+
+@{
+    ViewBag.Title = "Forum Discussion";
+    bool isPreviousLinkVisible = ViewBag.IsPreviousLinkVisible ?? false;
+    bool isNextLinkVisible = ViewBag.IsNextLinkVisible ?? false;
+    bool isAdmin = ViewBag.IsAdmin ?? false;
+}
+
+@foreach(Post post in Model)
+{
+    @PostHelper.Render(post, Html, isAdmin, false)
+}
+
+@if (isPreviousLinkVisible)
+{
+    <a id = "previousLink" href="@Href("~/Posts/Index/" + (ViewBag.PageNumber -1))" class = "bt black"> &lt; Previous Page </a>
+}
+
+@if (isNextLinkVisible)
+{
+    <a id="nextLink" href="@Href("~/Posts/Index/" + (ViewBag.PageNumber + 1))" class = "bt black"> Next Page &gt;</a>
+}

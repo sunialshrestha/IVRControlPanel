@@ -1,0 +1,11 @@
+﻿@model IVRControlPanel.Models.Post
+
+@{
+    ViewBag.Title = "Posts Details";
+    bool IsAdmin = ViewBag.IsAdmin ?? false;
+    
+}
+
+@PostHelper.Render(Model, Html, IsAdmin, true)
+
+

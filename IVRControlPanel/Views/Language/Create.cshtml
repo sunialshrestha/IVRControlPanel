@@ -1,0 +1,42 @@
+﻿@model IVRControlPanel.Models.Language
+@{
+    ViewBag.Title = "Add Language";
+}
+<h2>
+    Create</h2>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<div class="box grid_12">
+    <header>
+        <div class="inner">
+            <div class="left title">
+                <h1>
+                    Create New Language</h1>
+            </div>
+            <div class="right">
+                <a href="#" class="close">close</a>
+            </div>
+        </div>
+    </header>
+    <div class="box-content">
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+                                           
+            <div class="field fullwidth">
+                <label for="text-input-normal">
+                   Language
+                </label>
+                @Html.EditorFor(model => model.Language1)
+                @Html.ValidationMessageFor(model => model.Language1)
+            </div>
+                                    
+            <footer class="pane">
+                <input type="submit" class="bt blue" value="Create" />
+            </footer>
+        }
+    </div>
+</div>
+<header class="grid_12 head">
+    @Html.ActionLink("Back to List", "Index")
+</header>

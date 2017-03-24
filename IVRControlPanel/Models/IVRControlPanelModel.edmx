@@ -1,0 +1,721 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="IVRControlPanelModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="IVRControlPanelModelStoreContainer">
+          <EntitySet Name="Administrators" EntityType="IVRControlPanelModel.Store.Administrators" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Category" EntityType="IVRControlPanelModel.Store.Category" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Comments" EntityType="IVRControlPanelModel.Store.Comments" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Language" EntityType="IVRControlPanelModel.Store.Language" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PlayWav" EntityType="IVRControlPanelModel.Store.PlayWav" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Posts" EntityType="IVRControlPanelModel.Store.Posts" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PostsTags" EntityType="IVRControlPanelModel.Store.PostsTags" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Role" EntityType="IVRControlPanelModel.Store.Role" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tags" EntityType="IVRControlPanelModel.Store.Tags" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User" EntityType="IVRControlPanelModel.Store.User" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Comments_Posts" Association="IVRControlPanelModel.Store.FK_Comments_Posts">
+            <End Role="Posts" EntitySet="Posts" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_User" Association="IVRControlPanelModel.Store.FK_Comments_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlayWav_Category" Association="IVRControlPanelModel.Store.FK_PlayWav_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="PlayWav" EntitySet="PlayWav" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlayWav_Language" Association="IVRControlPanelModel.Store.FK_PlayWav_Language">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="PlayWav" EntitySet="PlayWav" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlayWav_User" Association="IVRControlPanelModel.Store.FK_PlayWav_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="PlayWav" EntitySet="PlayWav" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Posts_User" Association="IVRControlPanelModel.Store.FK_Posts_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Posts" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostsTags_Posts" Association="IVRControlPanelModel.Store.FK_PostsTags_Posts">
+            <End Role="Posts" EntitySet="Posts" />
+            <End Role="PostsTags" EntitySet="PostsTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostsTags_Tags" Association="IVRControlPanelModel.Store.FK_PostsTags_Tags">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="PostsTags" EntitySet="PostsTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="IVRControlPanelModel.Store.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Administrators">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ParentCategoryID" Type="int" />
+        </EntityType>
+        <EntityType Name="Comments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="PostID" Type="int" Nullable="false" />
+          <Property Name="DateTime" Type="datetime" Nullable="false" />
+          <Property Name="Body" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Language" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PlayWav">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="LanguageID" Type="int" Nullable="false" />
+          <Property Name="UploadDateTime" Type="datetime" Nullable="false" />
+          <Property Name="ActiveDateTime" Type="datetime2" Nullable="false" />
+          <Property Name="FilePath" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Posts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="DateTime" Type="datetime" Nullable="false" />
+          <Property Name="Body" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PostsTags">
+          <Key>
+            <PropertyRef Name="PostID" />
+            <PropertyRef Name="TagID" />
+          </Key>
+          <Property Name="PostID" Type="int" Nullable="false" />
+          <Property Name="TagID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Description" Type="text" />
+        </EntityType>
+        <EntityType Name="Tags">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="64" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="PasswordSalt" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="256" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
+          <Property Name="LastLoginIp" Type="nvarchar" MaxLength="40" />
+          <Property Name="IsActivated" Type="bit" Nullable="false" />
+          <Property Name="IsLockedOut" Type="bit" Nullable="false" />
+          <Property Name="LastLockedOutDate" Type="datetime" Nullable="false" />
+          <Property Name="LastLockedOutReason" Type="nvarchar" MaxLength="256" />
+          <Property Name="NewPasswordKey" Type="nvarchar" MaxLength="128" />
+          <Property Name="NewPasswordRequested" Type="datetime" />
+          <Property Name="NewEmail" Type="nvarchar" MaxLength="100" />
+          <Property Name="NewEmailKey" Type="nvarchar" MaxLength="128" />
+          <Property Name="NewEmailRequested" Type="datetime" />
+          <Property Name="ContactNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="BirthDate" Type="date" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="6" />
+          <Property Name="FileContent" Type="image" />
+          <Property Name="MimeType" Type="nvarchar" MaxLength="50" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Question" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="Answer" Type="nvarchar" Nullable="false" MaxLength="500" />
+        </EntityType>
+        <Association Name="FK_Comments_Posts">
+          <End Role="Posts" Type="IVRControlPanelModel.Store.Posts" Multiplicity="1" />
+          <End Role="Comments" Type="IVRControlPanelModel.Store.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="PostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_User">
+          <End Role="User" Type="IVRControlPanelModel.Store.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Comments" Type="IVRControlPanelModel.Store.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlayWav_Category">
+          <End Role="Category" Type="IVRControlPanelModel.Store.Category" Multiplicity="1" />
+          <End Role="PlayWav" Type="IVRControlPanelModel.Store.PlayWav" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PlayWav">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlayWav_Language">
+          <End Role="Language" Type="IVRControlPanelModel.Store.Language" Multiplicity="1" />
+          <End Role="PlayWav" Type="IVRControlPanelModel.Store.PlayWav" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PlayWav">
+              <PropertyRef Name="LanguageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlayWav_User">
+          <End Role="User" Type="IVRControlPanelModel.Store.User" Multiplicity="1" />
+          <End Role="PlayWav" Type="IVRControlPanelModel.Store.PlayWav" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PlayWav">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Posts_User">
+          <End Role="User" Type="IVRControlPanelModel.Store.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Posts" Type="IVRControlPanelModel.Store.Posts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Posts">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostsTags_Posts">
+          <End Role="Posts" Type="IVRControlPanelModel.Store.Posts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PostsTags" Type="IVRControlPanelModel.Store.PostsTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PostsTags">
+              <PropertyRef Name="PostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostsTags_Tags">
+          <End Role="Tags" Type="IVRControlPanelModel.Store.Tags" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PostsTags" Type="IVRControlPanelModel.Store.PostsTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tags">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PostsTags">
+              <PropertyRef Name="TagID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="IVRControlPanelModel.Store.Role" Multiplicity="1" />
+          <End Role="User" Type="IVRControlPanelModel.Store.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="IVRControlPanelModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="IVRControlPanelEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Administrators" EntityType="IVRControlPanelModel.Administrator" />
+          <EntitySet Name="Categories" EntityType="IVRControlPanelModel.Category" />
+          <EntitySet Name="Comments" EntityType="IVRControlPanelModel.Comment" />
+          <EntitySet Name="Languages" EntityType="IVRControlPanelModel.Language" />
+          <EntitySet Name="PlayWavs" EntityType="IVRControlPanelModel.PlayWav" />
+          <EntitySet Name="Posts" EntityType="IVRControlPanelModel.Post" />
+          <EntitySet Name="Roles" EntityType="IVRControlPanelModel.Role" />
+          <EntitySet Name="Tags" EntityType="IVRControlPanelModel.Tag" />
+          <EntitySet Name="Users" EntityType="IVRControlPanelModel.User" />
+          <AssociationSet Name="FK_PlayWav_Category" Association="IVRControlPanelModel.FK_PlayWav_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="PlayWav" EntitySet="PlayWavs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Posts" Association="IVRControlPanelModel.FK_Comments_Posts">
+            <End Role="Posts" EntitySet="Posts" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_User" Association="IVRControlPanelModel.FK_Comments_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlayWav_Language" Association="IVRControlPanelModel.FK_PlayWav_Language">
+            <End Role="Language" EntitySet="Languages" />
+            <End Role="PlayWav" EntitySet="PlayWavs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlayWav_User" Association="IVRControlPanelModel.FK_PlayWav_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="PlayWav" EntitySet="PlayWavs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Posts_User" Association="IVRControlPanelModel.FK_Posts_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Posts" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="IVRControlPanelModel.FK_User_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="PostsTags" Association="IVRControlPanelModel.PostsTags">
+            <End Role="Posts" EntitySet="Posts" />
+            <End Role="Tags" EntitySet="Tags" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Administrator">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ParentCategoryID" Type="Int32" />
+          <NavigationProperty Name="PlayWavs" Relationship="IVRControlPanelModel.FK_PlayWav_Category" FromRole="Category" ToRole="PlayWav" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="PostID" Type="Int32" Nullable="false" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" />
+          <Property Name="Body" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Post" Relationship="IVRControlPanelModel.FK_Comments_Posts" FromRole="Comments" ToRole="Posts" />
+          <NavigationProperty Name="User" Relationship="IVRControlPanelModel.FK_Comments_User" FromRole="Comments" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Language1" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="PlayWavs" Relationship="IVRControlPanelModel.FK_PlayWav_Language" FromRole="Language" ToRole="PlayWav" />
+        </EntityType>
+        <EntityType Name="PlayWav">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="LanguageID" Type="Int32" Nullable="false" />
+          <Property Name="UploadDateTime" Type="DateTime" Nullable="false" />
+          <Property Name="ActiveDateTime" Type="DateTime" Nullable="false" />
+          <Property Name="FilePath" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Category" Relationship="IVRControlPanelModel.FK_PlayWav_Category" FromRole="PlayWav" ToRole="Category" />
+          <NavigationProperty Name="Language" Relationship="IVRControlPanelModel.FK_PlayWav_Language" FromRole="PlayWav" ToRole="Language" />
+          <NavigationProperty Name="User" Relationship="IVRControlPanelModel.FK_PlayWav_User" FromRole="PlayWav" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" />
+          <Property Name="Body" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Comments" Relationship="IVRControlPanelModel.FK_Comments_Posts" FromRole="Posts" ToRole="Comments" />
+          <NavigationProperty Name="User" Relationship="IVRControlPanelModel.FK_Posts_User" FromRole="Posts" ToRole="User" />
+          <NavigationProperty Name="Tags" Relationship="IVRControlPanelModel.PostsTags" FromRole="Posts" ToRole="Tags" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Users" Relationship="IVRControlPanelModel.FK_User_Role" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Posts" Relationship="IVRControlPanelModel.PostsTags" FromRole="Tags" ToRole="Posts" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="Comments" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="CreatedDate" Type="DateTime" />
+          <Property Name="LastModifiedDate" Type="DateTime" />
+          <Property Name="LastLoginDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastLoginIp" Type="String" MaxLength="40" Unicode="true" FixedLength="false" />
+          <Property Name="IsActivated" Type="Boolean" Nullable="false" />
+          <Property Name="IsLockedOut" Type="Boolean" Nullable="false" />
+          <Property Name="LastLockedOutDate" Type="DateTime" Nullable="false" />
+          <Property Name="LastLockedOutReason" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="NewPasswordKey" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="NewPasswordRequested" Type="DateTime" />
+          <Property Name="NewEmail" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="NewEmailKey" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="NewEmailRequested" Type="DateTime" />
+          <Property Name="ContactNumber" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="BirthDate" Type="DateTime" />
+          <Property Name="Gender" Type="String" MaxLength="6" Unicode="true" FixedLength="false" />
+          <Property Name="FileContent" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="MimeType" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="FileName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Question" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Answer" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Comments1" Relationship="IVRControlPanelModel.FK_Comments_User" FromRole="User" ToRole="Comments" />
+          <NavigationProperty Name="PlayWavs" Relationship="IVRControlPanelModel.FK_PlayWav_User" FromRole="User" ToRole="PlayWav" />
+          <NavigationProperty Name="Posts" Relationship="IVRControlPanelModel.FK_Posts_User" FromRole="User" ToRole="Posts" />
+          <NavigationProperty Name="Role" Relationship="IVRControlPanelModel.FK_User_Role" FromRole="User" ToRole="Role" />
+        </EntityType>
+        <Association Name="FK_PlayWav_Category">
+          <End Role="Category" Type="IVRControlPanelModel.Category" Multiplicity="1" />
+          <End Role="PlayWav" Type="IVRControlPanelModel.PlayWav" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PlayWav">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Posts">
+          <End Role="Posts" Type="IVRControlPanelModel.Post" Multiplicity="1" />
+          <End Role="Comments" Type="IVRControlPanelModel.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="PostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_User">
+          <End Role="User" Type="IVRControlPanelModel.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Comments" Type="IVRControlPanelModel.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlayWav_Language">
+          <End Role="Language" Type="IVRControlPanelModel.Language" Multiplicity="1" />
+          <End Role="PlayWav" Type="IVRControlPanelModel.PlayWav" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PlayWav">
+              <PropertyRef Name="LanguageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlayWav_User">
+          <End Role="User" Type="IVRControlPanelModel.User" Multiplicity="1" />
+          <End Role="PlayWav" Type="IVRControlPanelModel.PlayWav" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PlayWav">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Posts_User">
+          <End Role="User" Type="IVRControlPanelModel.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Posts" Type="IVRControlPanelModel.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Posts">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="IVRControlPanelModel.Role" Multiplicity="1" />
+          <End Role="User" Type="IVRControlPanelModel.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PostsTags">
+          <End Role="Posts" Type="IVRControlPanelModel.Post" Multiplicity="*" />
+          <End Role="Tags" Type="IVRControlPanelModel.Tag" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IVRControlPanelModelStoreContainer" CdmEntityContainer="IVRControlPanelEntities">
+          <EntitySetMapping Name="Administrators"><EntityTypeMapping TypeName="IVRControlPanelModel.Administrator"><MappingFragment StoreEntitySet="Administrators">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Password" ColumnName="Password" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Categories"><EntityTypeMapping TypeName="IVRControlPanelModel.Category"><MappingFragment StoreEntitySet="Category">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+            <ScalarProperty Name="ParentCategoryID" ColumnName="ParentCategoryID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Comments"><EntityTypeMapping TypeName="IVRControlPanelModel.Comment"><MappingFragment StoreEntitySet="Comments">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="UserID" ColumnName="UserID" />
+            <ScalarProperty Name="PostID" ColumnName="PostID" />
+            <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+            <ScalarProperty Name="Body" ColumnName="Body" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Languages"><EntityTypeMapping TypeName="IVRControlPanelModel.Language"><MappingFragment StoreEntitySet="Language">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Language1" ColumnName="Language" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="PlayWavs"><EntityTypeMapping TypeName="IVRControlPanelModel.PlayWav"><MappingFragment StoreEntitySet="PlayWav">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+            <ScalarProperty Name="UserID" ColumnName="UserID" />
+            <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+            <ScalarProperty Name="UploadDateTime" ColumnName="UploadDateTime" />
+            <ScalarProperty Name="ActiveDateTime" ColumnName="ActiveDateTime" />
+            <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Posts"><EntityTypeMapping TypeName="IVRControlPanelModel.Post"><MappingFragment StoreEntitySet="Posts">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="UserID" ColumnName="UserID" />
+            <ScalarProperty Name="Title" ColumnName="Title" />
+            <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+            <ScalarProperty Name="Body" ColumnName="Body" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Roles"><EntityTypeMapping TypeName="IVRControlPanelModel.Role"><MappingFragment StoreEntitySet="Role">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Tags"><EntityTypeMapping TypeName="IVRControlPanelModel.Tag"><MappingFragment StoreEntitySet="Tags">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Users"><EntityTypeMapping TypeName="IVRControlPanelModel.User"><MappingFragment StoreEntitySet="User">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="UserName" ColumnName="UserName" />
+            <ScalarProperty Name="Password" ColumnName="Password" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+            <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+            <ScalarProperty Name="Comments" ColumnName="Comments" />
+            <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+            <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+            <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+            <ScalarProperty Name="LastLoginIp" ColumnName="LastLoginIp" />
+            <ScalarProperty Name="IsActivated" ColumnName="IsActivated" />
+            <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
+            <ScalarProperty Name="LastLockedOutDate" ColumnName="LastLockedOutDate" />
+            <ScalarProperty Name="LastLockedOutReason" ColumnName="LastLockedOutReason" />
+            <ScalarProperty Name="NewPasswordKey" ColumnName="NewPasswordKey" />
+            <ScalarProperty Name="NewPasswordRequested" ColumnName="NewPasswordRequested" />
+            <ScalarProperty Name="NewEmail" ColumnName="NewEmail" />
+            <ScalarProperty Name="NewEmailKey" ColumnName="NewEmailKey" />
+            <ScalarProperty Name="NewEmailRequested" ColumnName="NewEmailRequested" />
+            <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+            <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+            <ScalarProperty Name="Gender" ColumnName="Gender" />
+            <ScalarProperty Name="FileContent" ColumnName="FileContent" />
+            <ScalarProperty Name="MimeType" ColumnName="MimeType" />
+            <ScalarProperty Name="FileName" ColumnName="FileName" />
+            <ScalarProperty Name="Question" ColumnName="Question" />
+            <ScalarProperty Name="Answer" ColumnName="Answer" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="PostsTags" TypeName="IVRControlPanelModel.PostsTags" StoreEntitySet="PostsTags">
+            <EndProperty Name="Posts">
+              <ScalarProperty Name="ID" ColumnName="PostID" />
+            </EndProperty>
+            <EndProperty Name="Tags">
+              <ScalarProperty Name="ID" ColumnName="TagID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="IVRControlPanelModel">
+        <EntityTypeShape EntityType="IVRControlPanelModel.Administrator" Width="1.5" PointX="5.75" PointY="2.25" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="IVRControlPanelModel.Category" Width="1.5" PointX="3" PointY="0.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="IVRControlPanelModel.Comment" Width="1.5" PointX="7.5" PointY="8.875" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="IVRControlPanelModel.Language" Width="1.5" PointX="3" PointY="12.25" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="IVRControlPanelModel.PlayWav" Width="1.5" PointX="5.25" PointY="6.25" Height="3.1340950520833344" IsExpanded="true" />
+        <EntityTypeShape EntityType="IVRControlPanelModel.Post" Width="1.5" PointX="5.25" PointY="13.875" Height="2.55719075520833" IsExpanded="true" />
+        <EntityTypeShape EntityType="IVRControlPanelModel.Role" Width="1.5" PointX="0.75" PointY="6.875" Height="1.7879850260416665" IsExpanded="true" />
+        <EntityTypeShape EntityType="IVRControlPanelModel.Tag" Width="1.5" PointX="7.5" PointY="14.375" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="IVRControlPanelModel.User" Width="1.5" PointX="3" PointY="4.125" Height="7.364726562500004" IsExpanded="true" />
+        <AssociationConnector Association="IVRControlPanelModel.FK_PlayWav_Category" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="1.46875" />
+          <ConnectorPoint PointX="5.46875" PointY="1.46875" />
+          <ConnectorPoint PointX="5.46875" PointY="6.25" />
+        </AssociationConnector>
+        <AssociationConnector Association="IVRControlPanelModel.FK_Comments_Posts" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="13.876152846153847" />
+          <ConnectorPoint PointX="7.125" PointY="13.501152846153847" />
+          <ConnectorPoint PointX="7.125" PointY="10.24974609375" />
+          <ConnectorPoint PointX="7.5" PointY="10.24974609375" />
+        </AssociationConnector>
+        <AssociationConnector Association="IVRControlPanelModel.FK_Comments_User" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="10.932236328125" />
+          <ConnectorPoint PointX="5.916666666666667" PointY="10.932236328125" />
+          <ConnectorPoint PointX="6.083333333333333" PointY="10.932236328125" />
+          <ConnectorPoint PointX="7.041666666666667" PointY="10.932236328125" />
+          <ConnectorPoint PointX="7.208333333333333" PointY="10.932236328125" />
+          <ConnectorPoint PointX="7.5" PointY="10.932236328125" />
+        </AssociationConnector>
+        <AssociationConnector Association="IVRControlPanelModel.FK_PlayWav_Language" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="13.047841796875" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="13.047841796875" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="13.047841796875" />
+          <ConnectorPoint PointX="6" PointY="13.047841796875" />
+          <ConnectorPoint PointX="6" PointY="9.3840950520833353" />
+        </AssociationConnector>
+        <AssociationConnector Association="IVRControlPanelModel.FK_PlayWav_User" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="7.8170475260416676" />
+          <ConnectorPoint PointX="5.25" PointY="7.8170475260416676" />
+        </AssociationConnector>
+        <AssociationConnector Association="IVRControlPanelModel.FK_Posts_User" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5000000000000009" PointY="11.489726562500003" />
+          <ConnectorPoint PointX="4.875" PointY="11.864726562500003" />
+          <ConnectorPoint PointX="4.875" PointY="15.153595377604166" />
+          <ConnectorPoint PointX="5.25" PointY="15.153595377604166" />
+        </AssociationConnector>
+        <AssociationConnector Association="IVRControlPanelModel.FK_User_Role" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="7.7689925130208337" />
+          <ConnectorPoint PointX="3" PointY="7.7689925130208337" />
+        </AssociationConnector>
+        <AssociationConnector Association="IVRControlPanelModel.PostsTags" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="15.172841796875" />
+          <ConnectorPoint PointX="7.5" PointY="15.172841796875" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

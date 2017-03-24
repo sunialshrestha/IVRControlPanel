@@ -1,0 +1,45 @@
+﻿body {
+}
+
+.field-validation-error
+{
+    color:Red;
+    font-size:12px;
+}
+.validation-summary-errors
+{
+        color:Red;
+    font-size:12px;
+}
+.green-text
+{
+    color: Green;
+    font-size:12px;
+}
+
+.display-label {
+    margin: 1em 0 0 0;
+    font-size:18px;
+    padding:10px;
+    
+}
+
+.commentName
+{
+    color:#2B93DA;
+    font-size: 18px;
+    font-weight:bold;
+}
+
+.commentTime
+{ color:#71BD1D;
+    font-size: 14px;
+    font-weight:bold;
+}
+
+.commentBody
+{
+    background-color:#DADADA;
+    padding:10px 20px 10px 10px;
+    margin-right:100px;
+}

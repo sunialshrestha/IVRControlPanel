@@ -1,0 +1,28 @@
+﻿@if (Request.IsAuthenticated)
+{
+    
+           if (Request.Cookies["LoginInfo"] != null)
+    {
+        string LastLogin = Server.HtmlEncode(Request.Cookies["LoginInfo"]["LastLogin"]);
+        string Image = Server.HtmlEncode(Request.Cookies["LoginInfo"]["ImageName"]);
+
+    
+     <li class = "@(ViewData["CurrentPage"] == "profile" ? "active" : "")" style="margin:auto">  <img src = "@Url.Content("~/Content/img/profile/" + Image)" alt="profilepic" width = "70px" height = "62px" />
+               <ul class="submenu">
+ 
+    <li ><a href="@Url.Action("Details", "UserProfile")"  title="User details"> @User.Identity.Name </a> </li>
+       
+    <li><a href="" title="Last Login"><span style="padding-left:25px">Last Login</span><br />@LastLogin</a></li> 
+    <li><a href = "@Url.Action("LogOff", "Account")" title="Logout">Log Out</a> </li>
+         </ul> 
+               
+     </li>      
+    }
+
+}
+else
+{
+    <li><a href="@Url.Action("Register", "Account")"  title="User details"><span class='glyph reblog'></span> Register</a></li>
+    <li><a href="@Url.Action("LogOn", "Account")"  title="User details"><span class='glyph attention'></span> Log On</a></li>
+  
+}

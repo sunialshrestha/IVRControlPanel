@@ -1,0 +1,45 @@
+﻿@model IEnumerable<IVRControlPanel.Models.Category>
+
+@{
+    ViewBag.Title = "Category List";
+}
+<header class="grid_12 head">
+    @Html.ActionLink("Create New", "Create")
+</header>
+
+
+<!-- Table -->
+<div class="grid_12 table" style="padding-top:20px">
+   
+    <table>
+        <thead>
+            <tr>
+                <th>CategoryName</th>
+                <th>ParentCategoryID</th>
+                <th> Action </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) 
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ParentCategoryID)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+                        @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+                               
+</div>
+<!-- /Table -->
+
+

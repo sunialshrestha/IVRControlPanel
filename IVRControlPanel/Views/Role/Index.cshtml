@@ -1,0 +1,40 @@
+﻿@model IEnumerable<IVRControlPanel.Models.Role>
+
+@{
+    ViewBag.Title = "List of Role";
+}
+
+<header class="grid_12 head">
+    @Html.ActionLink("Create New", "Create")
+</header>
+
+
+<!-- Table -->
+<div class="grid_12 table" style="padding-top:20px">
+   
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th> Action </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) 
+            {
+                <tr>
+                    <td>
+                       @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                         @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+                               
+</div>
+<!-- /Table -->

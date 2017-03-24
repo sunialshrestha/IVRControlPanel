@@ -1,0 +1,76 @@
+﻿@model IEnumerable<IVRControlPanel.Models.PlayWav>
+@{
+    ViewBag.Title = "Play Wav Records";
+}
+<!-- DataTable -->
+<div class="grid_12">
+              @*       <audio controls>
+                        <source src="@Url.Action("myaudio")" type="audio/wav" />
+                        <p>
+                            Your browser does not support HTML 5 audio element</p>
+                    </audio>*@
+
+    <div class="table">
+        <table class="datatable">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Category
+                    </th>
+                    <th>
+                        User
+                    </th>
+                    <th>
+                        Language
+                    </th>
+                    <th>
+                        Upload DateTime
+                    </th>
+                    <th>
+                        Active DateTime
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                         <a href="@Url.Action("Download", new { filename = item.Name})">   @Html.DisplayFor(modelItem => item.Name)</a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.User.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Language.Language1)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UploadDateTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ActiveDateTime)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                           
+
+                        </td>
+                    </tr>
+                }
+ 
+
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- /DataTable -->

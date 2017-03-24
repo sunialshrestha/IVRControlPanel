@@ -1,0 +1,45 @@
+﻿@model IVRControlPanel.Models.Post
+@{
+    ViewBag.Title = "New Post";
+}
+<div class="box grid_12">
+    <header>
+        <div class="inner">
+            <div class="left title">
+                <h1>
+                    Create New Post</h1>
+            </div>
+            <div class="right">
+                <a href="#" class="close">close</a>
+            </div>
+        </div>
+    </header>
+    <div class="box-content">
+        <form action="@Href("~/Posts/Update")" method="post" id="postForm">
+        @if (Model.ID != -1)
+        {
+            <input type="hidden" name ="id" value="@Model.ID" />
+        }
+        <div class="field fullwidth">
+            <label for="text-input-normal">
+                Title
+            </label>
+            <input type="text"  name ="title" value="@Model.Title" />
+        </div>
+        <div class="field fullwidth">
+            <label for="text-input-normal">
+                Tags
+            </label>
+            <input type="text" name = "tags" value="@ViewBag.Tags" />
+            <span class="green-text">*tags are separated by space</span>
+        </div>
+        <div class="field fullwidth">
+            <label for="text-input-normal">
+                Body
+            </label>
+            <textarea name="body" rows="10" cols="80" class="editor">@Model.Body</textarea>
+        </div>
+        <input class="bt blue" type="submit" name="submit" value="Submit!" />
+        </form>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+﻿@model IVRControlPanel.Models.User
+@{
+    ViewBag.Title = "Edit User Profile";
+}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<div class="box grid_12">
+    <header>
+        <div class="inner">
+            <div class="left title">
+                <h1>
+                    Edit Role</h1>
+            </div>
+            <div class="right">
+                <a href="#" class="close">close</a>
+            </div>
+        </div>
+    </header>
+    <div class="box-content">
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(model => model.ID)
+                                           
+            <div class="field fullwidth">
+                <label for="text-input-normal">
+                    @Html.LabelFor(model => model.RoleID, "Role")
+                </label>
+                @Html.DropDownList("RoleID", String.Empty)
+                @Html.ValidationMessageFor(model => model.RoleID)
+            </div>
+            <div class="field fullwidth">
+                <label for="text-input-normal">
+                    @Html.LabelFor(model => model.Name)
+                </label>
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+
+            <div class="field fullwidth">
+                <label>
+                    @Html.LabelFor(model => model.Email)
+                </label>
+                @Html.EditorFor(model => model.Email)
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
+            <div class="field fullwidth">
+                <label>
+                    @Html.LabelFor(model => model.ContactNumber)
+                </label>
+                @Html.EditorFor(model => model.ContactNumber)
+                @Html.ValidationMessageFor(model => model.ContactNumber)
+            </div>
+            <div class="field fullwidth">
+                <label>
+                    @Html.LabelFor(model => model.BirthDate)
+                </label>
+                @Html.EditorFor(model => model.BirthDate)
+                @Html.ValidationMessageFor(model => model.BirthDate)
+            </div>
+            <div class="field fullwidth">
+                <label>
+                    @Html.LabelFor(model => model.Gender)
+                </label>
+                @Html.DropDownListFor(model => model.Gender, new SelectList(new[] { "Male", "Female" }))
+                @Html.ValidationMessageFor(model => model.Gender)
+            </div>
+            
+                     
+            <footer class="pane">
+                <input type="submit" class="bt blue" value="Save" />
+            </footer>
+        }
+    </div>
+</div>
+<header class="grid_12 head">
+    @Html.ActionLink("Back", "Details")
+</header>

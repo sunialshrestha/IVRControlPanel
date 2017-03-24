@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Upload Wav File";
+}
+<div class="box grid_12">
+    <header>
+        <div class="inner">
+            <div class="left title">
+                <h1>
+                    Upload wav file</h1>
+            </div>
+            <div class="right">
+                <a href="#" class="close">close</a>
+            </div>
+        </div>
+    </header>
+    <div class="box-content">
+        @using (Html.BeginForm("Upload", "AjaxUpload", FormMethod.Post, new { name = "form1", @id = "form1" }))
+        {
+            @Html.ValidationSummary(true)
+                                           
+            <div class="field fullwidth">
+                <label for="text-input-normal">
+                    @Html.Label("Select Active Date Time")</label>
+                <input type="text" id="active" value="@DateTime.Now" />
+            </div>
+
+            <div class="field fullwidth">
+                <label>
+                    @Html.Label("Select Language")
+                </label>
+                @Html.DropDownList("Language1", (SelectList)ViewBag.lang)
+            </div>
+            <div class="field fullwidth">
+                <label>
+                    @Html.Label("Select Category")</label>
+                @Html.DropDownList("ParentCategoryID", ViewBag.ParentCategoryID as SelectList)
+            </div>
+
+            <div id="file-uploader">
+                <noscript>
+                    <p>
+                        Please enable JavaScript to use file uploader.</p>
+                </noscript>
+            </div>
+                                  
+        }
+    </div>
+</div>

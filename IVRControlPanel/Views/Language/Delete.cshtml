@@ -1,0 +1,16 @@
+﻿@model IVRControlPanel.Models.Language
+@{
+    ViewBag.Title = "Delete Language";
+}
+<h3>
+    Are you sure you want to delete this?</h3>
+<div class="display-label">
+    Language: @Html.DisplayFor(model => model.Language1)
+</div>
+@using (Html.BeginForm())
+{
+        <input type="submit" value="Delete" class="bt red" />
+        <header class="grid_12 head">
+            @Html.ActionLink("Back to List", "Index")
+        </header>
+}

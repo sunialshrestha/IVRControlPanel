@@ -1,0 +1,50 @@
+﻿@model IVRControlPanel.Models.PlayWav
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>PlayWav</legend>
+
+    <div class="display-label">Name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">Category</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Category.CategoryName)
+    </div>
+
+    <div class="display-label">User</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.User.Name)
+    </div>
+
+    <div class="display-label">Language</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Language.Language1)
+    </div>
+
+    <div class="display-label">UploadDateTime</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UploadDateTime)
+    </div>
+
+    <div class="display-label">ActiveDateTime</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ActiveDateTime)
+    </div>
+
+    <div class="display-label">FilePath</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FilePath)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

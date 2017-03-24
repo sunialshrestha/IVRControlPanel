@@ -1,0 +1,41 @@
+﻿<div class="grid_12">
+    <div class="box">
+        <header>
+            <div class="inner">
+                <div class="left title">
+                    <h1>Report on Last weeks</h1>
+                </div>
+                <div class="right">
+                    <a href="#" class="close">close</a>
+                </div>
+            </div>
+        </header>
+        <div class="box-content">
+        <div class="field-validation-error">
+        @ViewBag.error
+        </div>
+            
+      @using(Html.BeginForm("index", "Home", FormMethod.Post))
+      {
+                                           
+            <div class="field  small iconized">
+                <label for="text-input-normal">
+                    @Html.Label("Start Date")</label>
+                <input type="text" data-icon="clock" id="startdate" name="startdate"  value="" />
+                  </div>    
+           <div class="field  small iconized">     
+                <label for="text-input-normal">
+                    @Html.Label("End Date")</label>
+                 <input type="text" data-icon="clock"  id="enddate" name="enddate" value="" />
+                                  
+            </div>
+           <input type="submit" name = "report" class="bt blue" value="Generate Report" />
+          <input type="submit" name = "report" class="bt blue" value="Export to Excel" />
+      }
+        
+            <div id="chart4">
+            </div>
+        </div>
+    </div>
+</div>
+

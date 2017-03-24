@@ -1,0 +1,117 @@
+﻿@model IVRControlPanel.Models.RegisterModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<!-- Quick post -->
+<div class="box grid_12">
+    <header>
+        <div class="inner">
+            <div class="left title">
+                <h1>
+                    Register</h1>
+                Already have account Please<a href="@Url.Action("LogOn", "Account")"> Login</a>
+            </div>
+            <div class="right">
+                <nav>
+                    <ul>
+                        <li class="active"><a href="#tab-1">Fill up the Form</a></li>
+                        <li><a href="#tab-2">Read Me</a></li>
+                        <li><a href="#tab-3">Terms And Conditions</a></li>
+                    </ul>
+                </nav>
+                <a href="#" class="close">close</a>
+            </div>
+        </div>
+    </header>
+    <div class="box-content">
+        <div id="tab-1" class="tab">
+            
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true, "Account creation was unsuccessful. Please correct the errors and try again.")
+                
+                <div class="field fullwidth">
+                    <label for="post-title">
+                        @Html.LabelFor(m => m.UserName)
+                    </label>
+                    @Html.TextBoxFor(m => m.UserName, new { placeholder = "enter your username" })
+                    @Html.ValidationMessageFor(m => m.UserName)
+                </div>
+                <div class="field fullwidth">
+                    <label for="post-categories">
+                        @Html.LabelFor(m => m.Name)
+                    </label>
+                    @Html.TextBoxFor(m => m.Name, new { placeholder = "enter your Full Name" })
+                    @Html.ValidationMessageFor(m => m.Name)
+                </div>
+                <div class="field fullwidth">
+                    <label for="post-content">@Html.LabelFor(m => m.Email)
+                    </label>
+                    @Html.TextBoxFor(m => m.Email, new {@id="text-input-email", placeholder = "Enter your valid Email Address" })
+                    @Html.ValidationMessageFor(m => m.Email)
+                </div>
+                <div class="field fullwidth">
+                    <label for="post-content">
+                        @Html.LabelFor(m => m.Password)
+                    </label>
+                    @Html.PasswordFor(m => m.Password)  <span class="green-text">* Passwords are required to be a minimum of @Membership.MinRequiredPasswordLength characters in length. </span>
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+                <div class="field fullwidth">
+                    <label for="post-content">
+                        @Html.LabelFor(m => m.ConfirmPassword)
+                    </label>
+                    @Html.PasswordFor(m => m.ConfirmPassword)
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                </div>
+                 <div class="field fullwidth">
+                    <label for="post-content">@Html.LabelFor(m => m.Question)
+                    </label>
+                   @* @Html.TextBoxFor(m => m.Question, new { @id = "text-input-email", placeholder = "Enter your valid Email Address" })
+                    @Html.ValidationMessageFor(m => m.Question)*@
+                   @* <select name="Question" id="Question">
+                      <option value="What is your favourite food?">What is your favourite food?</option>
+                      <option value="What is your childhood nick name?">What is your childhood nick name?</option>
+                      <option value="What school did you attend for sixth grade?">What school did you attend for sixth grade?</option>
+                      
+                    </select> *@
+
+                     @Html.DropDownList("Question",   (IEnumerable<SelectListItem>)ViewBag.QuestionList)
+                </div>
+               <div class="field fullwidth">
+                    <label for="post-content">@Html.LabelFor(m => m.Answer)
+                    </label>
+                    @Html.TextBoxFor(m => m.Answer)
+                    @Html.ValidationMessageFor(m => m.Answer)
+                </div>
+
+                <footer class="pane">
+                    <input type="submit" value="Register" class="bt blue" />
+                    
+                </footer>
+            }
+        </div>
+        <div id="tab-2" class="tab">
+            <p>
+                Read and do as I say... <br />
+                All Field in form must required <br />
+                Enter the password of minimum 5 character not less than that are not allowed <br />
+                Never told your password to other .
+                Enter your valid Email address when you are registered the link is sent to your Email address from where you can activate your account.<br />
+                Never miuse your account <br /> 
+                Otherwise be ready for punishment...
+
+
+            </p>
+        </div>
+        <div id="tab-3" class="tab">
+            <p>
+                All terms and conditions are applied according to APCA Nepal acts and rules formulated.</p>
+        </div>
+    </div>
+</div>
+<!-- /Quick post -->

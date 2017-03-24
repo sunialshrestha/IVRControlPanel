@@ -1,0 +1,327 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>@*<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />*@
+    <link href="@Url.Content("~/Content/Panel.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/css/jquery-ui.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/css/jquery-ui-timepicker-addon.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/css/fileuploader.css")" rel="stylesheet" type="text/css" />
+
+
+    @*Templates scripts and css*@
+    <!-- CSSs -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/reset.css")"  type="text/css"/>
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/960.css")"  type="text/css"/>
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/icons.css")"  type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/tipsy.css")"  type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/formalize.css")" type="text/css"/>
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/prettyPhoto.css")" type="text/css"/>
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/jquery-ui-1.8.18.custom.css")" type="text/css"/>
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/chosen.css")" type="text/css"/>
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/ui.spinner.css")" type="text/css"/>
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/jquery.jqplot.min.css")"  type="text/css"/>
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/fullcalendar.css")"  type="text/css"/>
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/jquery.miniColors.css")"  type="text/css"/>
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/elrte.min.css")"  type="text/css"/>
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/elfinder.css")"  type="text/css"/>
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/main.css")"  type="text/css"/>
+    
+
+    @RenderSection("Styles", false)
+</head>
+<body>
+
+    <!-- wrapper -->
+    <div id="wrapper">
+        <header>
+            <div class="container_12">
+                <div class="grid_12">
+                    <!-- navigation menu -->
+                    <nav class="main-nav">
+                        <ul>
+                            <li class = "@(ViewData["CurrentPage"] == "Home" ? "active":"")" ><a href="@Url.Action("Index", "Home")" title="Dashboard"><span
+                                class="glyph cloud"></span>Dashboard</a></li>
+                            <li class = "@(ViewData["CurrentPage"] == "Upload" ? "active" : "")"><a href="#" title="Elements"><span class="glyph archive"></span>Upload</a>
+                                <ul class="submenu">
+                                    <li><a href="@Url.Action("Index", "AjaxUpload")" title="Miscellaneous">Ajax Upload</a></li>
+                                    <li><a href="@Url.Action("Index", "NewsUpload")" title="Form">News</a></li>
+                                    <li><a href="@Url.Action("Index", "HoroscopeUpload")" title="Notifications">Daily Horoscope</a></li>
+                                    <li><a href="@Url.Action("Index", "UploadWeeklyHoroscope")" title="Notifications">Weekly Horoscope</a></li>
+                                </ul>
+                            </li>
+                            <li class = "@(ViewData["CurrentPage"] == "Post" ? "active" : "")"><a href="@Url.Action("Index", "Posts")" title="Tables"><span class="glyph list"></span>
+                                Forums </a></li>
+                            <li class = "@(ViewData["CurrentPage"] == "User" ? "active" : "")"><a href="@Url.Action("Index", "User")" title="Tables"><span class="glyph user"></span>
+                                User Management </a></li>
+                            <li class = "@(ViewData["CurrentPage"] == "Category" ? "active" : "")"><a href="#" title="Elements"><span class="glyph archive"></span>Category</a>
+                                <ul class="submenu">
+                                    <li><a href="@Url.Action("Index", "Category")">Category </a></li>
+                                    <li><a href="@Url.Action("Index", "Language")">Language </a></li>
+                                </ul>
+                            </li>
+                            <li class = "@(ViewData["CurrentPage"] == "Report" ? "active" : "")"><a href="#" title="Elements"><span class="glyph rating"></span>Report</a>
+                                <ul class="submenu">
+                                    <li><a href="@Url.Action("Index", "Report")"> Play Wav Record </a></li>
+                                    <li><a href="@Url.Action("Index", "Language")">Call Record </a></li>
+                                </ul>
+                            </li>
+                            <li></li>
+                            @Html.Partial("_LogOnPartial")
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <section id="main">
+            <div class="container_12">
+                <div class="grid_12" id="content-top">
+                    <br />
+                    <br />
+                    <div id="logo">
+                        <img src="@Href("~/Content/img/logo.png")" alt="logo" />
+                    </div>
+                    <nav>
+                        <ul>
+                            <li><a href="error-page.html"><span class="glyph close"></span>Error Page </a></li>
+                            <li><a href="#myModal" class="modal"><span class="glyph open-in-new-window"></span>Modal
+                            </a></li>
+                            <li><a href="@Url.Action("Edit","Posts")"><span class="glyph zoom-in"></span>Quick Post </a></li>
+                            <li><a href="@Url.Action("Index","AjaxUpload")"><span class="glyph terminal"></span>Upload </a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div id="content">
+                    <div class="extension top inleft breadcrumbs">
+                        <nav>
+                            <ul>
+                        	    @Html.MvcSiteMap().SiteMapPath()
+                           <!--     <li><a href="#">optional</a> <span class="divider"></span></li>
+                                <li><a href="#">bread</a> <span class="divider"></span></li>
+                                <li><a href="#">crumbs</a> <span class="divider"></span></li>
+                                <li><a href="#">here</a></li>
+                                -->
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="main-box">
+                        <!-- # Dashboard -->
+                        <header class="grid_12 head">
+                            <h1>
+                                Your</h1>
+                            <a href="">@ViewBag.Title</a> <span class="divider"></span>
+                        </header>
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- /wrapper -->
+    <footer>
+        <div class="container_12">
+            <p>
+                &copy; Copyright 2012 - APCA House | Software Department | Kathmandu, Nepal - <a
+                    href="http://www.sunil-shrestha.com.np" target="_blank">Sunil Shrestha</a></p>
+        </div>
+    </footer>
+
+
+
+
+    @*
+    <div class="page">
+        <header>
+            <div id="title">
+                <h1>IVR CONTROL PANEL</h1>
+            </div>
+            <div id="logindisplay">
+                @Html.Partial("_LogOnPartial")
+            </div>
+            <nav>
+                <ul id="menu">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Image", "Index", "ProfileImage")</li>
+                    <li>@Html.ActionLink("Forums", "Index", "Posts")</li>
+                    <li>@Html.ActionLink("User Administrator","Index","User")</li>
+                    <li>@Html.ActionLink("Category","Index","Category")</li>
+                    <li>@Html.ActionLink("Image Upload","Index","Uploader")</li>
+                    <li>@Html.ActionLink("Language","Index","Language")</li>
+                    <li>@Html.ActionLink("Ajax Upload","Index","AjaxUpload")</li>
+                </ul>
+            </nav>
+        </header>
+        <section id="main">
+            @RenderBody()
+        </section>
+        <footer>
+        </footer>
+    </div>
+*@
+    <style type="text/css">
+        #ui-datepicker-div, .ui-datepicker
+        {
+            font-size: 80%;
+        }
+    </style>
+    <script src="@Url.Content("~/Scripts/jquery-1.7.2.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/fileuploader.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/modernizr-1.7.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.8.20.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui.unobtrusive-0.5.0.min.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#BirthDate").datepicker({ dateFormat: "dd MM yy" });
+        });
+    </script>
+    @* Date and Time Pciker scripts and css*@
+    <script src="@Url.Content("~/Scripts/jquery-ui.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-timepicker-addon.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-sliderAccess.js")" type="text/javascript"></script>
+    @*End Date and Time Picker Scripts and CSS*@
+    <script type="text/javascript">
+        var uploader = new qq.FileUploader
+    ({
+        element: document.getElementById('file-uploader'),
+        params: {
+            param1: document.getElementById("Language1").value,
+            param2: document.getElementById("ParentCategoryID").value,
+            param3: document.getElementById("active").value
+        },
+        onSubmit: function () {
+            uploader.setParams({
+                param1: document.getElementById("Language1").value,
+                param2: document.getElementById("ParentCategoryID").value,
+                param3: document.getElementById("active").value
+            });
+        },
+        onComplete: function (id, fileName, responseJSON) {
+            $(this.element).find('.qq-upload-list li:nth-child(' + (id + 1) + ')').find('.qq-upload-file').html(responseJSON.filename);
+            $(this.element).find('.qq-upload-list li:nth-child(' + (id + 1) + ')').append("<span style='padding-right:20px;'>" + responseJSON.lang + "</span>");
+            $(this.element).find('.qq-upload-list li:nth-child(' + (id + 1) + ')').append("<span> [" + responseJSON.parent + "] " + responseJSON.cat + "</span>");
+            // alert(responseJSON.filename);
+        },
+        action: '@Url.Action("upload")', // put here a path to your page to handle uploading
+       // allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'], // user this if you want to upload only pictures
+        allowedExtensions: ['wav'],
+        sizeLimit: 4000000, // max size, about 4MB
+        minSizeLimit: 0, // min size
+        debug: true
+    });
+   
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#active').datetimepicker({
+                ampm: true,
+                hour: 13,
+                minute: 15,
+                minDate: new Date(),
+                addSliderAccess: true,
+                sliderAccessArgs: { touchonly: false }
+            });
+        });
+
+        $(document).ready(function () {
+            $('#startdate').datetimepicker({
+                dateFormat: 'mm/dd/yy',
+                ampm: true,
+                showSecond: true,
+                hour: 13,
+                minute: 15,
+                second: 10,
+                timeFormat: "hh:mm:ss tt",
+                minDate: "01/01/2000",
+                maxDate: new Date(),
+                addSliderAccess: true,
+                sliderAccessArgs: { touchonly: false },
+                beforeShow: function (input, inst) {
+                    var offset = $(input).offset();
+                    var height = $(input).height();
+                    window.setTimeout(function () {
+                        inst.dpDiv.css({ top: (offset.top + height + 4) + 'px', left: offset.left + 'px' })
+                    }, 1);
+                }
+
+            });
+        });
+
+        $(document).ready(function () {
+            $('#enddate').datetimepicker({
+                dateFormat: 'mm/dd/yy',
+                ampm: true,
+                showSecond: true,
+                hour: 13,
+                minute: 15,
+                second: 10,
+                
+                timeFormat: "hh:mm:ss tt",
+                minDate: "01/01/2000",
+                maxDate: new Date(),
+                addSliderAccess: true,
+                sliderAccessArgs: { touchonly: false }
+
+            });
+        });
+
+    </script>
+    <!-- JAVASCRIPTs -->
+    <!--[if lt IE 9]>
+            <script language="javascript" type="text/javascript" src="@Url.Content("~/Content/js/jqPlot/excanvas.min.js")" type="text/javascript" ></script>
+            <script language="javascript" type="text/javascript" src="@Url.Content("~/Content/js/html5shiv.js")" type="text/javascript" ></script>
+        <![endif]-->
+    <script src="@Url.Content("~/Content/js/jquery.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/jquery-ui-1.8.18.custom.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/jquery.tipsy.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/jquery.formalize.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/jquery.modal.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/prefixfree.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/datables/js/jquery.dataTables.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/jquery.prettyPhoto.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/jquery.autogrowtextarea.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/jquery.easing.1.3.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/jquery.fileinput.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/chosen.jquery.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/ui.checkBox.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/ui.spinner.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/jquery.loading.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/jquery.path.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/jqPlot/jquery.jqplot.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/jqPlot/plugins/jqplot.pieRenderer.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/jqPlot/plugins/jqplot.cursor.min.js")" type="text/javascript"></script>
+    <!-- # -->
+    <script src="@Url.Content("~/Content/js/jqPlot/plugins/jqplot.highlighter.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/jqPlot/plugins/jqplot.dragable.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/jqPlot/plugins/jqplot.dateAxisRenderer.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/jqPlot/plugins/jqplot.ohlcRenderer.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/jqPlot/plugins/jqplot.trendline.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/jqPlot/plugins/jqplot.barRenderer.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/jqPlot/plugins/jqplot.categoryAxisRenderer.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/jqPlot/plugins/jqplot.pointLabels.min.js")" type="text/javascript"></script>
+    <!-- /# -->
+    <script src="@Url.Content("~/Content/js/fullcalendar.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/jquery.miniColors.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/jquery.maskedinput-1.3.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/jquery-ui-timepicker-addon.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/elrte.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/elfinder.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/jquery.metadata.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/main.js")" type="text/javascript"></script>
+    @*End Templates scripts and css*@
+    <script src="@Url.Content("~/Scripts/expander.js")" type="text/javascript"></script>
+
+   
+   @if (IsSectionDefined("ChartScript"))
+   {
+    @RenderSection("ChartScript")
+   }
+     @if (IsSectionDefined("Scripts"))
+   {
+    @RenderSection("Scripts")
+   }
+
+
+</body>
+</html>

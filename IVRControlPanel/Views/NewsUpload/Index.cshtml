@@ -1,0 +1,126 @@
+﻿@model IVRControlPanel.Models.UploadNewsModel
+
+@{
+    ViewBag.Title = "News Upload";
+}
+
+@*
+<h2>Index</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>UploadNewsModel</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ActiveDateTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ActiveDateTime)
+            @Html.ValidationMessageFor(model => model.ActiveDateTime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Language)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Language)
+            @Html.ValidationMessageFor(model => model.Language)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}*@
+
+<div class="box grid_12">
+    <header>
+        <div class="inner">
+            <div class="left title">
+                <h1>
+                    Upload wav file For News</h1>
+            </div>
+            <div class="right">
+                <a href="#" class="close">close</a>
+            </div>
+        </div>
+    </header>
+    <div class="box-content">
+        @using (Html.BeginForm("index", "NewsUpload", FormMethod.Post, new { name = "form1", @id = "form1", enctype = "multipart/form-data" }))
+        {
+            @Html.ValidationSummary(true)
+                                           
+            <div class="field fullwidth">
+                <label for="text-input-normal">
+                    @Html.Label("Select Active Date Time")</label>
+                <input type="text" id="active" value="@DateTime.Now" />
+                 @Html.ValidationMessageFor(model => model.ActiveDateTime)
+                 
+            </div>
+
+            <div class="field fullwidth">
+                <label>
+                    @Html.Label("Select Language")
+                </label>
+                @Html.DropDownList("Language", (SelectList)ViewBag.lang)
+            </div>
+            
+            <div class="field">
+                <label>
+                    @Html.Label("General News")
+                </label>
+               @Html.TextBoxFor(model => model.GeneralNews, new {  type = "file" })
+               @Html.ValidationMessageFor(model => model.GeneralNews)
+             
+                
+            </div>
+            <div class="field">
+                <label>
+                    @Html.Label("Sports News")
+                </label>
+               @Html.TextBoxFor(model => model.SportNews, new { type = "file" })
+               @Html.ValidationMessageFor(model => model.SportNews)
+             
+            </div>         
+            <div class="field">
+                <label>
+                    @Html.Label("Business News")
+                </label>
+               @Html.TextBoxFor(model => model.BusiNews, new { type = "file" })
+               @Html.ValidationMessageFor(model => model.BusiNews)
+               
+            </div>            
+            <div class="field">
+                <label>
+                  @Html.Label("International News")
+                </label>
+                  @Html.TextBoxFor(model => model.InterNews, new {  type = "file" })
+                  @Html.ValidationMessageFor(model => model.InterNews)
+                  
+            </div>    
+             <div class="field">
+                <label>
+                    @Html.Label("Entertaintment News")
+                </label>
+                 @Html.TextBoxFor(model => model.EntertaintNews, new {  type = "file" })
+                 @Html.ValidationMessageFor(model => model.EntertaintNews)
+                 
+            </div>          
+            
+             <footer class="pane">
+                <input type="submit" class="bt blue" value="Submit" />
+            </footer>
+           
+           
+                                  
+        }
+    </div>
+</div>
+
+
+
+

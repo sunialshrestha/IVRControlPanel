@@ -1,0 +1,151 @@
+﻿@model IVRControlPanel.Models.HoroscopeModel
+
+@{
+    ViewBag.Title = "News Upload";
+}
+<div class="box grid_12">
+    <header>
+        <div class="inner">
+            <div class="left title">
+                <h1>
+                    Upload wav file For Weekly Horoscope</h1>
+            </div>
+            <div class="right">
+                <a href="#" class="close">close</a>
+            </div>
+        </div>
+    </header>
+    <div class="box-content">
+        @using (Html.BeginForm("index", "UploadWeeklyHoroscope", FormMethod.Post, new { name = "form1", @id = "form1", enctype = "multipart/form-data" }))
+        {
+            @Html.ValidationSummary(true)
+                                           
+            <div class="field fullwidth">
+                <label for="text-input-normal">
+                    @Html.Label("Select Active Date Time")</label>
+                <input type="text" id="active" value="@DateTime.Now" />
+                 @Html.ValidationMessageFor(model => model.ActiveDateTime)
+                 
+            </div>
+
+            <div class="field fullwidth">
+                <label>
+                    @Html.Label("Select Language")
+                </label>
+                @Html.DropDownList("Language", (SelectList)ViewBag.lang)
+            </div>
+            
+            <div class="field">
+                <label>
+                    @Html.Label("Aries")
+                </label>
+               @Html.TextBoxFor(model => model.Aries, new { type = "file" })
+               @Html.ValidationMessageFor(model => model.Aries)
+             
+                
+            </div>
+            <div class="field">
+                <label>
+                    @Html.Label("Taurus")
+                </label>
+               @Html.TextBoxFor(model => model.Taurus, new { type = "file" })
+               @Html.ValidationMessageFor(model => model.Taurus)
+             
+            </div>         
+            <div class="field">
+                <label>
+                    @Html.Label("Gemini")
+                </label>
+               @Html.TextBoxFor(model => model.Gemini, new { type = "file" })
+               @Html.ValidationMessageFor(model => model.Gemini)
+               
+            </div>            
+            <div class="field">
+                <label>
+                  @Html.Label("Cancer")
+                </label>
+                  @Html.TextBoxFor(model => model.Cancer, new { type = "file" })
+                  @Html.ValidationMessageFor(model => model.Cancer)
+                  
+            </div>    
+             <div class="field">
+                <label>
+                    @Html.Label("Leo")
+                </label>
+                 @Html.TextBoxFor(model => model.Leo, new { type = "file" })
+                 @Html.ValidationMessageFor(model => model.Leo)
+                 
+            </div>    
+                         <div class="field">
+                <label>
+                    @Html.Label("Virgo")
+                </label>
+                 @Html.TextBoxFor(model => model.Virgo, new { type = "file" })
+                 @Html.ValidationMessageFor(model => model.Virgo)
+                 
+            </div>  
+            
+                                     <div class="field">
+                <label>
+                    @Html.Label("Libra")
+                </label>
+                 @Html.TextBoxFor(model => model.Libra, new { type = "file" })
+                 @Html.ValidationMessageFor(model => model.Libra)
+                 
+            </div>  
+                        
+            <div class="field">
+                <label>
+                    @Html.Label("Scorpio")
+                </label>
+               @Html.TextBoxFor(model => model.Scorpio, new { type = "file" })
+               @Html.ValidationMessageFor(model => model.Scorpio)
+               
+            </div>       
+            
+            <div class="field">
+                <label>
+                    @Html.Label("Sagittarius")
+                </label>
+               @Html.TextBoxFor(model => model.Sagittarius, new { type = "file" })
+               @Html.ValidationMessageFor(model => model.Sagittarius)
+               
+            </div>            
+            <div class="field">
+                <label>
+                  @Html.Label("Capricorn")
+                </label>
+                  @Html.TextBoxFor(model => model.Capricorn, new { type = "file" })
+                  @Html.ValidationMessageFor(model => model.Capricorn)
+                  
+            </div>    
+             <div class="field">
+                <label>
+                    @Html.Label("Aquarius")
+                </label>
+                 @Html.TextBoxFor(model => model.Aquarius, new { type = "file" })
+                 @Html.ValidationMessageFor(model => model.Aquarius)
+                 
+            </div>    
+            
+                  <div class="field">
+                <label>
+                  @Html.Label("Pisces")
+                </label>
+                  @Html.TextBoxFor(model => model.Pisces, new { type = "file" })
+                  @Html.ValidationMessageFor(model => model.Pisces)
+                  
+            </div>        
+             <footer class="pane">
+                <input type="submit" class="bt blue" value="Submit" />
+            </footer>
+           
+           
+                                  
+        }
+    </div>
+</div>
+
+
+
+

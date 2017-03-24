@@ -1,0 +1,86 @@
+﻿@model IEnumerable<IVRControlPanel.Models.User>
+@{
+    ViewBag.Title = "User List";
+}
+<header class="grid_12 head">
+    @Html.ActionLink("Role", "Index", "Role")
+</header>
+<!-- Media table -->
+<div class="grid_12 boxed-table">
+    <div class="box">
+        <header>
+            <div class="inner">
+                <div class="left title">
+                    <h1>
+                        User List</h1>
+                </div>
+                <div class="right">
+                    <a href="#" class="close">close</a>
+                </div>
+            </div>
+        </header>
+        <div class="box-content no-inner-space">
+            <table class="datatable five-per-page">
+                <thead>
+                    <tr>
+                        <th class="check-all checkbox">
+                            Active
+                        </th>
+                        <th class="sorting_disabled small">
+                            Thumbnail
+                        </th>
+                        <th>
+                            Role
+                        </th>
+                        <th>
+                            User Name
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th class="sorting_disabled small">
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="checkbox">
+                                @if (item.IsActivated == true)
+                                { 
+                                    @:Active
+                                                                }
+                                else
+                                { 
+                                    @:In-Active
+                                 }
+                            </td>
+                            <td class="center">
+                                <img src="@Url.Content("~/Content/img/profile/" + item.FileName)" width="40" height="40" alt="avatar" />
+                            </td>
+                            <td class="center">
+                                @Html.DisplayFor(modelItem => item.Role.Name)
+                            </td>
+                            <td class="center">
+                                @Html.DisplayFor(modelItem => item.UserName)
+                            </td>
+                            <td class="center">
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td class="center">
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <footer class="pane">
+            </footer>
+        </div>
+    </div>
+</div>
+<!-- /Media table -->

@@ -1,0 +1,17 @@
+﻿@model IVRControlPanel.Models.Role
+@{
+    ViewBag.Title = "Delete Role";
+}
+<h3>
+    Are you sure you want to delete this?</h3>
+<div class="display-label">
+    Name: @Html.DisplayFor(model => model.Name)</div>
+@using (Html.BeginForm())
+{
+   
+    <input type="submit" value="Delete" class="bt red" />
+    <header class="grid_12 head">
+        @Html.ActionLink("Back to List", "Index")
+    </header>
+    
+}

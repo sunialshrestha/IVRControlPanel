@@ -1,0 +1,254 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+                   @Html.Partial("_CDRChart")
+
+    <!-- Statistics -->
+                            <div class="grid_5 simple-box">
+                                <table class="statistics">
+                                    <tbody>
+                                        <tr>
+                                            <td class="amount"><a href="#">1.3k</a></td>
+                                            <td>new visitors</td>
+                                            <td class="changes">+36.36%</td>
+                                            <td class="bar">
+                                                <div class="progressbar green" data-value="36"></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="amount"><a href="#">23</a></td>
+                                            <td>new sales</td>
+                                            <td class="changes red">-9.57%</td>
+                                            <td class="bar">
+                                                <div class="progressbar red" data-value="10"></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="amount"><a href="#">216</a></td>
+                                            <td>new users</td>
+                                            <td class="changes">+80.58%</td>
+                                            <td class="bar">
+                                                <div class="progressbar green" data-value="80"></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="amount"><a href="#">8</a></td>
+                                            <td>new comments</td>
+                                            <td class="changes red">-3.57%</td>
+                                            <td class="bar">
+                                                <div class="progressbar red" data-value="4"></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="amount"><a href="#">6%</a></td>
+                                            <td>bounce rate</td>
+                                            <td class="changes">+8.35%</td>
+                                            <td class="bar">
+                                                <div class="progressbar green" data-value="94"></div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /Statistics -->
+
+                            <!-- Latests users -->
+                            <div class="box grid_7">
+                                <header>
+                                    <div class="inner">
+                                        <div class="left title">
+                                            <h1>Latests users</h1>
+                                            <a href="@Url.Action("Index", "User")">view all registered users »</a>
+                                        </div>
+                                        <div class="right">
+                                            <a href="#" class="close">close</a>
+                                        </div>
+                                    </div>
+                                </header>
+
+                                <div class="box-content no-inner-space">
+                                    <ul class="userlist">
+                                    @foreach (var user in ViewBag.latestUser)
+                                    {
+                                        <li>
+                                            <div class="avatar"><img src="@Url.Content("~/Content/img/profile/" + user.FileName)" width="40" height="40" alt="avatar" /></div>
+                                            <div class="info-l">
+                                                <a href="#" class="title">@user.Name</a>
+                                                <span>@user.Email</span>
+                                            </div>
+                                            <div class="info-r">
+                                                <span class="title">Telephone</span>
+                                                <span>@user.ContactNumber</span>
+                                            </div>
+                                        </li>
+
+                                    }
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- /Latests users -->
+
+
+
+@*            @{
+  
+                foreach (KeyValuePair<String, int> kvp in ViewBag.dateRange)
+                {
+                    @kvp.Key; 
+                              <br />
+                @kvp.Value;
+                          <br />
+                }
+
+    
+            }
+
+                         @{
+    var dic = ViewBag.dateRange as Dictionary<String,int>;
+}
+
+var s1 = [@(String.Join(",", dic.Select(d => String.Format("['{0} 12:00:00',{1}]", d.Key, d.Value))))];
+*@
+
+@*
+  @Html.Raw(
+                Json.Encode(
+                    ((Dictionary<string, int>)ViewBag.dateRange).Select(x => new object[] { x.Key, x.Value })
+                )
+            );
+
+ @Html.Raw(
+                Json.Encode(
+                    ((Dictionary<string, int>)ViewBag.dateRange).Select(x => new object[] { x.Key, x.Value })
+                )
+            );
+
+
+            <br />
+            <br />
+            <br />
+            @ViewBag.minDate
+                <br />
+                <br />
+                @ViewBag.maxDate*@
+                
+                
+ 
+
+
+ 
+@section ChartScript {
+
+
+       <script type="text/javascript">
+        if($('#chart4')[0])
+        (function () {
+         var s1 = @Html.Raw(
+                Json.Encode(
+                    ((Dictionary<string, int>)ViewBag.dateRange).Select(x => new object[] { x.Key, x.Value })
+                )
+            );
+
+                var s2 = @Html.Raw(
+                Json.Encode(
+                    ((Dictionary<string, int>)ViewBag.dateRange).Select(x => new object[] { x.Key, x.Value })
+                )
+            );
+
+         
+        /* var s1 = [['06/15/2009 16:00:00', 112000], ['06/16/2009 16:00:00', 122000], ['06/17/2009 16:00:00', 104000], ['06/18/2009 16:00:00', 99000], ['06/19/2009 16:00:00', 121000],
+            ['06/20/2009 16:00:00', 148000], ['06/21/2009 16:00:00', 114000], ['06/22/2009 16:00:00', 133000], ['06/22/2009 16:00:00', 161000], ['06/23/2009 16:00:00', 173000]];
+   
+        var s2 = [['06/15/2009 16:00:00', 112000], ['06/16/2009 16:00:00', 122000], ['06/17/2009 16:00:00', 104000], ['06/18/2009 16:00:00', 99000], ['06/19/2009 16:00:00', 121000],
+            ['06/20/2009 16:00:00', 148000], ['06/21/2009 16:00:00', 114000], ['06/22/2009 16:00:00', 133000], ['06/22/2009 16:00:00', 161000], ['06/23/2009 16:00:00', 173000]];
+           */ 
+            plot1 = $.jqplot("chart4", [s2, s1], {
+                // Turns on animatino for all series in this plot.
+                animate: true,
+                // Will animate plot on calls to plot1.replot({resetAxes:true})
+                animateReplot: true,
+                cursor: {
+                    show: true,
+                    zoom: true,
+                    looseZoom: true,
+                    showTooltip: false
+                },
+                series:[
+                    {
+                        pointLabels: {
+                            show: true
+                        },
+                        renderer: $.jqplot.BarRenderer,
+                        showHighlight: false,
+                        yaxis: 'y2axis',
+                        rendererOptions: {
+                            // Speed up the animation a little bit.
+                            // This is a number of milliseconds. 
+                            // Default for bar series is 3000. 
+                            animation: {
+                                speed: 2500
+                            },
+                            barWidth: 15,
+                            barPadding: -15,
+                            barMargin: 0,
+                            highlightMouseOver: false
+                        }
+                    },
+                    {
+                        rendererOptions: {
+                            // speed up the animation a little bit.
+                            // This is a number of milliseconds.
+                            // Default for a line series is 2500.
+                            animation: {
+                                speed: 3000
+                            }
+                        }
+                    }
+                ],
+                axesDefaults: {
+                    pad: 0
+                },
+                axes: {
+                    // These options will set up the x axis like a category axis.
+					 xaxis: {
+                renderer:$.jqplot.DateAxisRenderer,
+                tickOptions:{formatString:'%b %e'},
+               // min: "08-19-2012",
+              //  max: "08-25-2012",
+               min: "@ViewBag.minDate",
+               max: "@ViewBag.maxDate",
+                tickInterval: "1 day",
+              },
+             
+                    yaxis: {
+                        tickOptions: {
+                            formatString: "%'d"
+                        },
+                        rendererOptions: {
+                            forceTickAt0: true
+                        }
+                    },
+                    y2axis: {
+                        tickOptions: {
+                            formatString: "%'d"
+                        },
+                        rendererOptions: {
+                            // align the ticks on the y2 axis with the y axis.
+                            alignTicks: true,
+                            forceTickAt0: true
+                        }
+                    }
+                },
+                highlighter: {
+                    show: true,
+                    showLabel: true,
+                    tooltipAxes: 'y',
+                    sizeAdjust: 7.5 , tooltipLocation : 'ne'
+                }
+            });
+           
+        })();
+
+       </script>
+
+}

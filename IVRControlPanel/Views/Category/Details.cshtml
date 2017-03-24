@@ -1,0 +1,27 @@
+﻿@model IVRControlPanel.Models.Category
+@{
+    ViewBag.Title = "Category Details";
+}
+<!-- Simple box -->
+<div class="simple-box grid_12">
+    <div class="inner">
+        <header>
+            <h1>
+                Category</h1>
+        </header>
+        <div class="box-content">
+            <p>
+                <div class="display-label">
+                    CategoryName: @Html.DisplayFor(model => model.CategoryName)</div>
+                <div class="display-label">
+                    ParentCategoryID: @Html.DisplayFor(model => model.ParentCategoryID)</div>
+            </p>
+        </div>
+    </div>
+</div>
+<header class="grid_12 head">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID })
+</header>
+<header class="grid_12 head">
+    @Html.ActionLink("Back to List", "Index")
+</header>

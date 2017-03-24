@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mvcSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-3.0"
+            xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-3.0 MvcSiteMapSchema.xsd"
+            enableLocalization="true">
+  <mvcSiteMapNode title="Panel" controller="Home" action="Index">
+    <mvcSiteMapNode title="Dashboard" controller="Home" action="Index"/>
+    <mvcSiteMapNode title="Register" controller="Account" action="Register"/>
+    <mvcSiteMapNode title="Change Password" controller="Account" action="ChangePassword"/>
+    <mvcSiteMapNode title="Upload" controller="AjaxUpload" action="Index">
+      <mvcSiteMapNode title="Upload" controller="AjaxUpload" action="Upload"/>
+      <mvcSiteMapNode title="News" controller="NewsUpload" action="Index"/>
+      <mvcSiteMapNode title="Daily Horoscope" controller="HoroscopeUpload" action="Index"/>
+      <mvcSiteMapNode title="Weekly Horoscope" controller="UploadWeeklyHoroscope" action="Index"/>
+      
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Forum" controller="Posts" action="Index">
+      <mvcSiteMapNode title="Detail" controller="Posts" action="Details"/>
+      <mvcSiteMapNode title="Delete" controller="Posts" action="Delete"/>
+      <mvcSiteMapNode title="Edit" controller="Posts" action="Edit"/>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Category" controller="Category" action="Index">
+      
+      <mvcSiteMapNode title="Detail" controller="Category" action="Details"/>
+      <mvcSiteMapNode title="Delete" controller="Category" action="Delete"/>
+      <mvcSiteMapNode title="Edit" controller="Category" action="Edit"/>
+      <mvcSiteMapNode title="Create" controller="Category" action="Create"/>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Language" controller="Language" action="Index">
+
+      <mvcSiteMapNode title="Detail" controller="Language" action="Details"/>
+      <mvcSiteMapNode title="Delete" controller="Language" action="Delete"/>
+      <mvcSiteMapNode title="Edit" controller="Language" action="Edit"/>
+      <mvcSiteMapNode title="Create" controller="Language" action="Create"/>
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="User" controller="User" action="Index">
+
+      <mvcSiteMapNode title="Detail" controller="User" action="Details"/>
+      <mvcSiteMapNode title="Delete" controller="User" action="Delete"/>
+      <mvcSiteMapNode title="Edit" controller="User" action="Edit"/>
+     
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Profile" controller="UserProfile" action="Details">
+
+      <mvcSiteMapNode title="Detail" controller="UserProfile" action="Details"/>
+      <mvcSiteMapNode title="Change Profile Image" controller="ProfileImage" action="UploadImage"/>
+      <mvcSiteMapNode title="Edit" controller="UserProfile" action="Edit"/>
+
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Report" controller="Report" action="Index">
+
+      <mvcSiteMapNode title="Delete" controller="Report" action="Delete"/>
+
+    </mvcSiteMapNode>
+    
+  </mvcSiteMapNode>
+
+</mvcSiteMap>
+

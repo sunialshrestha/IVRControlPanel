@@ -1,0 +1,60 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+    
+    
+<!-- Mirrored from pelegrinodev.com/admantium/error-page.php by HTTrack Website Copier/3.x [XR&CO'2010], Thu, 23 Aug 2012 06:06:31 GMT -->
+<head>
+        <meta charset="UTF-8" />
+        <title>Error Page</title>
+        
+        <!-- CSSs -->
+        <link href="@Url.Content("~/Content/Panel.css")" rel="stylesheet" type="text/css" />
+<!-- CSSs -->
+<link rel="stylesheet" href="@Url.Content("~/Content/css/reset.css")"  type="text/css"/>
+<link rel="stylesheet" href="@Url.Content("~/Content/css/960.css")"  type="text/css"/>
+<link rel="stylesheet" href="@Url.Content("~/Content/css/icons.css")"  type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/Content/css/tipsy.css")"  type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/Content/css/formalize.css")" type="text/css"/>
+<link rel="stylesheet" href="@Url.Content("~/Content/css/prettyPhoto.css")" type="text/css"/>
+<link rel="stylesheet" href="@Url.Content("~/Content/css/jquery-ui-1.8.18.custom.css")" type="text/css"/>
+<link rel="stylesheet" href="@Url.Content("~/Content/css/chosen.css")" type="text/css"/>
+<link rel="stylesheet" href="@Url.Content("~/Content/css/ui.spinner.css")" type="text/css"/>
+<link rel="stylesheet" href="@Url.Content("~/Content/css/jquery.jqplot.min.css")"  type="text/css"/>
+<link rel="stylesheet" href="@Url.Content("~/Content/css/fullcalendar.css")"  type="text/css"/>
+<link rel="stylesheet" href="@Url.Content("~/Content/css/jquery.miniColors.css")"  type="text/css"/>
+<link rel="stylesheet" href="@Url.Content("~/Content/css/elrte.min.css")"  type="text/css"/>
+<link rel="stylesheet" href="@Url.Content("~/Content/css/elfinder.css")"  type="text/css"/>
+<link rel="stylesheet" href="@Url.Content("~/Content/css/main.css")"  type="text/css"/>
+        
+        
+    </head>
+    <body>
+        <!-- wrapper -->
+        <div id="wrapper">
+
+            <section id="main">
+                    <div id="content" class="error-page">
+                        <div id="logo">
+                           <img src="@Href("~/Content/img/logo.png")" alt="logo" />
+                        </div>
+                        <div class="balloon">
+                            <p>Error!</p>
+                        </div>
+                        <div class="balloon-pointer"></div>
+                        <div class="explanatory-box">
+                            <p>The page you was trying to retrieve was moved or doesn’t exists.</p>
+                            <p class="center"><a href="@Url.Action("Index", "Home")" title="Dashboard">‹ back DashBoard</a>
+                        </div>
+                    </div>
+            </section>
+        </div>
+        <!-- /wrapper -->
+    </body>
+
+<!-- Mirrored from pelegrinodev.com/admantium/error-page.php by HTTrack Website Copier/3.x [XR&CO'2010], Thu, 23 Aug 2012 06:06:31 GMT -->
+</html>
+
